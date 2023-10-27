@@ -166,15 +166,19 @@ require('lazy').setup({
     {
         'akinsho/toggleterm.nvim', 
         version = "*", 
-        config = true
+        config = function()
+            require("toggleterm").setup{}
+        end,
     },
     --{'akinsho/toggleterm.nvim', version = "*", opts = {--[[ things you want to change go here]]}}
     --{
     --    'nvim-tree/nvim.lua',
-    --    lazy = true,
+        --    lazy = true,
     --},   
 })
 
+vim.api.nvim_set_keymap('n', '<C-t>', '<Cmd>ToggleTerm<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<C-t>', '<Cmd>ToggleTerm<CR>', { noremap = true, silent = true })
 -- some basic configurationsa
 require('settings')
 vim.o.background = "dark"
@@ -217,3 +221,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
