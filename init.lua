@@ -117,10 +117,10 @@ require('lazy').setup({
             --  If you want to override the default filetypes that your language server will attach to you can
             --  define the property 'filetypes' to the map in question.
             local servers = {
-                -- clangd = {},
+                clangd = {},
                 -- gopls = {},
                 -- pyright = {},
-                -- rust_analyzer = {},
+                rust_analyzer = {},
                 -- tsserver = {},
                 -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -379,9 +379,27 @@ require('lazy').setup({
         'akinsho/toggleterm.nvim',
         version = "*",
         init = function()
-            require("toggleterm").setup {}
+            require("toggleterm").setup {
+                --size = 20 | function(term)
+                --    if term.direction == "horizontal" then
+                --        return 15
+                --    elseif term.direction == "vertical" then
+                --        return vim.o.columns * 0.4
+                --   end
+                --end,
+                open_mapping = [[<c-\>]],
+                auto_scroll = true,
+                start_in_insert = true,
+                direction = 'float',
+                shell = vim.o.shell,
+                terminal = 'powershell',
+            }
+
             vim.api.nvim_set_keymap('n', '<C-t>', '<Cmd>ToggleTerm<CR>', { noremap = true, silent = true })
+            
+            -- vim.api.nvim_set_keymap('n', '<C-'\'>', '<Cmd>ToggleTerm direction=float<CR>', { noremap = true, silent = true })
         end,
+
     },
     --{'akinsho/toggleterm.nvim', version = "*", opts = {--[[ things you want to change go here]]}}
     --{
