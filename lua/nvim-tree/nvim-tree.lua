@@ -5,7 +5,12 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
-    config = function()
-        require("nvim-tree").setup {}
+    init = function()
+        require("nvim-tree").setup({
+            filters = {
+                dotfiles = true,
+                exclude = { ".config", ".local", ".meta" },
+            },
+        })
     end,
 }
